@@ -11,11 +11,11 @@ const FALLBACKS = [
     process.env.BASE_URL + '/tvshow/695?season=2&episode=1&play=1', // Arrested Development
     process.env.BASE_URL + '/tvshow/157?season=2&episode=2&play=1', // Parks and Rec
     process.env.BASE_URL + '/tvshow/10?season=3&episode=2&play=1', // The Office
-    process.env.BASE_URL + '/tvshow/3?season=5&episode=2&play=1', // Family Guy
+    process.env.BASE_URL + '/tvshow/6?season=5&episode=2&play=1', // Family Guy
 ];
 const START_URL = FALLBACKS[0]; // initial page to load
-const GRACE_PERIOD = 10 * 1000; // 1 hour
-const TICK_MS = 5 * 1000; // 15s
+const GRACE_PERIOD = 60 * 40 * 1000; // 40m
+const TICK_MS = 5 * 1000; // 5s
 
 const setWindowFullscreen = async (page) => {
   try {
@@ -34,7 +34,7 @@ const setWindowFullscreen = async (page) => {
 const clickPlayButtonIfPresent = async (page) => {
   try {
     // Wait a moment for the player to initialize
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(5000);
     
     // Check if the button exists and is visible
     const button = await page.$('.vjs-big-play-button');
