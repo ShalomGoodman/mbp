@@ -34,7 +34,7 @@ const setWindowFullscreen = async (page) => {
 const clickCenterOfPage = async (page) => {
   try {
     // Wait a moment for the player to initialize
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(5000);
 
     // Click the center of the page
     await page.mouse.click(page.viewportSize().width / 2, page.viewportSize().height / 2);
