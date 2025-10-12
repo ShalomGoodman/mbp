@@ -14,8 +14,8 @@ const FALLBACKS = [
     process.env.BASE_URL + '/tvshow/3?season=5&episode=2&play=1', // Family Guy
 ];
 const START_URL = FALLBACKS[0]; // initial page to load
-const GRACE_PERIOD = 60 * 60 * 1000; // 1 hour
-const TICK_MS = 15 * 1000; // 15s
+const GRACE_PERIOD = 10 * 1000; // 1 hour
+const TICK_MS = 5 * 1000; // 15s
 
 const setWindowFullscreen = async (page) => {
   try {
