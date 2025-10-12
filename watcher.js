@@ -31,22 +31,16 @@ const setWindowFullscreen = async (page) => {
   }
 };
 
-const clickPlayButtonIfPresent = async (page) => {
+const clickCenterOfPage = async (page) => {
   try {
     // Wait a moment for the player to initialize
     await page.waitForTimeout(2000);
-    
-    // Check if the button exists and is visible
-    const button = await page.$('.vjs-big-play-button');
-    if (button) {
-      const isVisible = await button.isVisible();
-      if (isVisible) {
-        await button.click({ force: true });
-        console.log('[watcher] clicked play button');
-      }
-    }
+
+    // Click the center of the page
+    await page.mouse.click(page.viewportSize().width / 2, page.viewportSize().height / 2);
+    console.log('[watcher] clicked center of page');
   } catch (err) {
-    console.warn('[watcher] play button click skipped:', err.message);
+    console.warn('[watcher] center click skipped:', err.message);
   }
 };
 
@@ -57,7 +51,7 @@ const clickPlayButtonIfPresent = async (page) => {
     const tab1 = await ctx.newPage();
     await tab1.goto(START_URL);
     await setWindowFullscreen(tab1);
-    await clickPlayButtonIfPresent(tab1);
+    await clickCenterOfPage(tab1);
     let lastChangeAt = Date.now();
     let nextIdx = 0;
     let lastValue = START_URL;
@@ -79,7 +73,7 @@ const clickPlayButtonIfPresent = async (page) => {
                     await tab1.goto(FALLBACKS[nextIdx % FALLBACKS.length]);
                     lastValue = await tab1.url();
                     await setWindowFullscreen(tab1);
-                    await clickPlayButtonIfPresent(tab1);
+                    await clickCenterOfPage(tab1);
                 }
             }
         } catch (e) {
