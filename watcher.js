@@ -75,9 +75,9 @@ const getPixelHex = async (page) => {
 (async () => {
     let lastChangeAt = Date.now();
     let lastPixel = null;
-    let currentShow = shows[0];
-    let currentSeason = 1;
-    let currentEpisode = 1;
+    let currentShow = shows[1];
+    let currentSeason = 5;
+    let currentEpisode = 2;
     const ctx = await chromium.launchPersistentContext(USER_DATA_DIR, {
         channel: 'chrome', headless: false, viewport: null
     });
